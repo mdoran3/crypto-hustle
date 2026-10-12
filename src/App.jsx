@@ -1,11 +1,29 @@
 import { useState } from 'react'
 import heroImg from './assets/hero.png'
 import './App.css'
+import { useEffect } from 'react'
+import CoinInfo from './components/CoinInfo'
+import SideNav from "./components/SideNav"
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY
 
 function App() {
   const [list, setList] = useState(null)
+  const [searchInput, setSearchInput] = useState("")
+  const [filteredResults, setFilteredResults] = useState([])
+
+  const searchItems = searchValue => {
+    setSearchInput(searchValue)
+    if (searchValue !== "") {
+      const filteredData = list.filter(coin =>
+        coin.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(searchValue.toLowerCase())
+      )
+      setFilteredResults(filteredData)
+    } else {
+      setFilteredResults(list)
+    }
+  }
 
   useEffect(() => {
     const fetchAllCoinData = async () => {
@@ -28,12 +46,36 @@ function App() {
   return (
     <>
       <div className = "whole-page">
+        <SideNav />
         <h1>My Crypto List</h1>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(inputString) => searchItems(inputString.target.value)}
+        />
           <ul>
-            {list?.map(coin => (
-              <li key={coin.id}>{coin.name}</li>
-            ))}
-          </ul>
+            {searchInput.length > 0
+              ? filteredResults.map(coin => (
+                  <CoinInfo
+                    key={coin.id}
+                    id={coin.id}
+                    image={coin.image}
+                    name={coin.name}
+                    symbol={coin.symbol}
+                    price={coin.current_price}
+                  />
+                ))
+              : list?.map(coin => (
+                  <CoinInfo
+                    key={coin.id}
+                    id={coin.id}
+                    image={coin.image}
+                    name={coin.name}
+                    symbol={coin.symbol}
+                    price={coin.current_price}
+                  />
+                ))}
+            </ul>
       </div>
     </>
   )
