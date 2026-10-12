@@ -1,4 +1,4 @@
-# Crypto Hustle
+# Crypto Hustle ₿🪙
 
 A React app that lists the top 30 cryptocurrencies by market cap, with live prices from the [CoinGecko API](https://www.coingecko.com/en/api). Search the list by coin name or symbol.
 
