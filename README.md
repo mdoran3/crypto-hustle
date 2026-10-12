@@ -1,16 +1,75 @@
-# React + Vite
+# Crypto Hustle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React app that lists the top 30 cryptocurrencies by market cap, with live prices from the [CoinGecko API](https://www.coingecko.com/en/api). Search the list by coin name or symbol.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Fetches the top 30 coins by market cap (USD) from CoinGecko
+- Shows each coin's icon, name and current price
+- Search box that filters by coin name or symbol
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React](https://react.dev/) 19
+- [Vite](https://vite.dev/)
+- [CoinGecko API](https://www.coingecko.com/en/api)
 
-## Expanding the ESLint configuration
+## Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<!-- Add screenshots to a screenshots/ folder and reference them below. -->
+
+| Coin list | Search |
+| --- | --- |
+| ![Coin list](screenshots/coin-list.png) | ![Search results](screenshots/search.png) |
+
+## Video Demo
+
+<!-- Replace the link below with your video (YouTube, Loom, or a GIF in the repo). -->
+
+[Watch the demo](https://your-video-link-here)
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) and npm
+- A free CoinGecko Demo API key ([get one here](https://www.coingecko.com/en/api))
+
+### Installation
+
+```bash
+git clone https://github.com/mdoran3/crypto-hustle.git
+cd crypto-hustle
+npm install
+```
+
+### Environment variables
+
+Create a `.env.local` file in the project root (it is git-ignored):
+
+```
+VITE_APP_API_KEY=your_coingecko_demo_api_key
+```
+
+Restart the dev server after changing it. Vite only reads env files at startup.
+
+### Run
+
+```bash
+npm run dev
+```
+
+Then open the URL Vite prints (usually http://localhost:5173).
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint |
+
+## Note on the API key
+
+Vite inlines `VITE_*` variables into the built JavaScript, so the key is visible in the browser once deployed. This is fine for a CoinGecko demo key, but don't use this pattern for sensitive keys.
